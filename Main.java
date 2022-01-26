@@ -1,37 +1,35 @@
 package com.company;
 
-import java.util.HashMap;
-import java.util.Scanner;
-
 public class Main {
+    public static boolean ismonotonic(int[] array)
+    {
 
-    private static int[] twosumBruteforce(int target, int nums[]) {
+        boolean nonincreasing = true;
+        boolean nondecreasing = true;
 
-        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
-        for (int i = 0; i <= nums.length; i++) {
-            //2 7 11 15   9 --> 0 1
-            //{2, 3, 7, 9, 11}; 20
-            int complement = target - nums[i];
-            //7
-            if (map.containsKey(complement)) {
-//                System.out.println(map.get(complement));
-//                System.out.println(i);
-                return new int[]{map.get(complement), i};
-            } else {
-                map.put(nums[i], i);
-                System.out.println(nums[i]);
-                System.out.println(i);
+       for(int i = 1;i<array.length;i++)
+       {
 
-            }
-        }
-        return new int[]{};
+              if(array[i] < array[i-1]){
+                  nonincreasing = false;
+              }
+
+                  else if(array[i] > array[i-1]){
+                       nondecreasing = false;
+                   }
+
+               }
+
+
+       
+        return nondecreasing || nonincreasing;
+    }
+
+
+    public static void main(String[] args) {
+	int[] array = new int[]{-1,-5,-10,-1100,-1100,-1101,-1102,-9001};
+
+    ismonotonic(array);
 
     }
-        public static void main (String[]args){
-            int[] nums= new int[]{2, 3, 7, 9, 11};
-            int target = 20;
-            twosumBruteforce(target, nums);
-
-        }
-
 }
